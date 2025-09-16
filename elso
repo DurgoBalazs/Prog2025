@@ -1,0 +1,22 @@
+import random
+
+szamok = []
+
+
+# 100 db elemű lista 1-99 közötti véletleszámokkal
+for i in range (100):
+    #...szám generálás
+    rzsam = random.randint(1, 100)
+    # szám elhelyezése a listába
+    szamok.append(rzsam)
+    
+#Ellenörzés
+print(szamok)
+
+
+#egyszámjáték
+jatek_szam=0
+nem_talaltDB = 0
+
+#kitalálandó szám beálilitása
+kitalalando_szam = 
