@@ -13,10 +13,30 @@ for i in range (100):
 #Ellenörzés
 print(szamok)
 
-
-#egyszámjáték
-jatek_szam=0
-nem_talaltDB = 0
-
 #kitalálandó szám beálilitása
-kitalalando_szam = 
+kitalalando_szam =random.randint(0, len(szamok))
+
+tipp = (input("Kérek egy egész pozitiv 1 és 100 közötti számott:"))
+
+while(not tipp.isdecimal()):
+    print("Egész számmal játsz!")
+    tipp = input("Kérek egy egész számot 1 és 100 között")
+
+tipp=int(tipp)
+
+if(tipp < kitalalando_szam):
+        print("A kitalándó szám nagyobb!")
+elif(tipp > kitalalando_szam):
+        print("A kitalálandó szám kisebb!")
+
+while(tipp != kitalalando_szam):
+    tipp=(input("Kérek egy egész pozitiv 1 és 100 közötti számott:"))
+    while(not tipp.isdecimal()):
+        print("Egész számmal játsz!")
+        tipp = input("Kérek egy egész számot 1 és 100 között")
+    tipp=int(tipp)
+    if(tipp < kitalalando_szam):
+        print("A kitalándó szám nagyobb!")
+    elif(tipp > kitalalando_szam):
+        print("A kitalálandó szám kisebb!")
+print("Gratulálok, eltaláltad a számot!")
