@@ -57,7 +57,7 @@ while verseny_adatok[i].split(",")[0]!="Yuki Tsunoda":
     i=i+1
 print("Yuki Tsunoda a",verseny_adatok[i].split(",")[2].strip(),"istálobban van")
 
-#Melyik csapatban van Pierre Gasly?
+#4 Melyik csapatban van Pierre Gasly?
 i=1
 while i<len(verseny_adatok) and "Pierre Gasly" not in verseny_adatok [i]:
     i=i+1
@@ -65,3 +65,18 @@ if i<len(verseny_adatok):
     print("Pierre Gasly", verseny_adatok [i].split(",")[2].strip(),"csapatban van!")
 else:
     print("Pierre Gasly nincsen egy csapatban sem ")
+
+#5 Számolja ki a versenzök pontszámainak átlagát
+S=0
+for i in range(1, len(verseny_adatok)):
+    S+=int(verseny_adatok[i].split(',')[1])
+print(f"a versenyzők átlagos pontszáma:{S/len(verseny_adatok)}")
+
+#6 Kinek van a legtöbb pontja
+maxi=1
+max=verseny_adatok[i].split(",")[1]
+for i in range(3,len(verseny_adatok)):
+    if verseny_adatok[i]>verseny_adatok[maxi]:
+        maxi=i
+        max=verseny_adatok[i]
+print(f"Ennyi a max pontszáma a versenyzönek:{max}")
