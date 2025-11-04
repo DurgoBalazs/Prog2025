@@ -80,3 +80,11 @@ for i in range(3,len(verseny_adatok)):
         maxi=i
         max=verseny_adatok[i]
 print(f"Ennyi a max pontszáma a versenyzönek:{max}")
+#7 kinek van a legkevesebb pontja
+mini=1
+min=verseny_adatok[i].split(",")[1]
+for i in range(2,len(verseny_adatok)):
+    if verseny_adatok[i]<verseny_adatok[mini]:
+        mini=i
+        min=verseny_adatok[i]
+print("Ennyi a legkevesebb pontszámmal rendelkező személy:",verseny_adatok[mini].split(",")[0])
