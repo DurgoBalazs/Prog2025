@@ -88,3 +88,24 @@ for i in range(2,len(verseny_adatok)):
         mini=i
         min=verseny_adatok[i]
 print("Ennyi a legkevesebb pontszámmal rendelkező személy:",verseny_adatok[mini].split(",")[0])
+
+#8.Kik vannak a MClaren istálloban
+"""
+db1=0
+masik_lista=[]
+for i in range(2,len(verseny_adatok)):
+print("Ezel a személyek vannak a Mclaren istálloba",masik_lista)
+"""
+#9.kinek van kinek nncs potja
+dby=0
+dbz=0
+y=[]
+z=[]
+for i in range(1,len(verseny_adatok)):
+    if (int(verseny_adatok[i].split(",")[1])>0):
+        dby=dby+1
+        y.append(verseny_adatok[i].split(",")[0])
+    else:
+        dbz=dbz+1
+        z.append(verseny_adatok[i].split(",")[0])
+print(f"Van pontja:{y}˛ \n\n nincs pontja:{z}")
