@@ -109,3 +109,17 @@ for i in range(1,len(verseny_adatok)):
         dbz=dbz+1
         z.append(verseny_adatok[i].split(",")[0])
 print(f"Van pontja:{y}˛ \n\n nincs pontja:{z}")
+
+#versenyzök pontszáma alapján növekvő sorrend
+for i in range(1,len(verseny_adatok)-1):
+    min=i
+    minertek=int(verseny_adatok[i].split(",")[1])
+    for j in range(i+1,len(verseny_adatok)):
+        if (int(verseny_adatok[j].split(",")[1])<int(verseny_adatok[min].split(",")[1])):
+            min=j
+            minertek=int(verseny_adatok[j].split(",")[1])
+    s=verseny_adatok[i]
+    verseny_adatok[i]=verseny_adatok[min]
+    verseny_adatok[min]=s
+for  i in verseny_adatok:
+    print(i)
