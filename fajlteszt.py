@@ -42,35 +42,37 @@ if (i<len(verseny_adatok)):
 else:
     print("nincs Fernando")
 # 2.B   Mindenki szezett-e már 90 pontott?
-"""
-i=0
-while i<len(verseny_adatok) and int(verseny_adatok[i].split(',')[1])>=90:
-    i=i+1
-if i==len(verseny_adatok):
-    print("van")
-else:
-    print("nincs")
-"""
-# 3. Melyik istálló pilotája a Yuki Tsunoda?
-i=1
-while verseny_adatok[i].split(",")[0]!="Yuki Tsunoda":
-    i=i+1
-print("Yuki Tsunoda a",verseny_adatok[i].split(",")[2].strip(),"istálobban van")
+def pontok(pontszam):
+    i=0
+    while i<len(verseny_adatok) and int(pontszam)>=90:
+        i=i+1
+    if i==len(verseny_adatok):
+        print("van")
+    else:
+        print("nincs")
 
-#4 Melyik csapatban van Pierre Gasly?
-i=1
-while i<len(verseny_adatok) and "Pierre Gasly" not in verseny_adatok [i]:
-    i=i+1
-if i<len(verseny_adatok):
-    print("Pierre Gasly", verseny_adatok [i].split(",")[2].strip(),"csapatban van!")
-else:
-    print("Pierre Gasly nincsen egy csapatban sem ")
+# 3. Melyik istálló pilotája a Yuki Tsunoda?
+def ember_nev(yukinev):
+    i=1
+    while verseny_adatok[i].split(",")[0]!=yukinev:
+        i=i+1
+    print(f"{yukinev} a{verseny_adatok[i].split(",")[2].strip(),}istálobban van")
+
+    #4 Melyik csapatban van Pierre Gasly?
+    i=1
+    while i<len(verseny_adatok) and "Pierre Gasly" not in verseny_adatok [i]:
+        i=i+1
+    if i<len(verseny_adatok):
+        print("Pierre Gasly", verseny_adatok [i].split(",")[2].strip(),"csapatban van!")
+    else:
+        print("Pierre Gasly nincsen egy csapatban sem ")
 
 #5 Számolja ki a versenzök pontszámainak átlagát
-S=0
-for i in range(1, len(verseny_adatok)):
-    S+=int(verseny_adatok[i].split(',')[1])
-print(f"a versenyzők átlagos pontszáma:{S/len(verseny_adatok)}")
+def atlag_szam(atlag):
+    S=0
+    for i in range(1, len(verseny_adatok)):
+        S+=int(verseny_adatok[i].split(',')[1])
+    print(f"a versenyzők átlagos pontszáma:{S/atlag}")
 
 #6 Kinek van a legtöbb pontja
 maxi=1
@@ -110,7 +112,7 @@ for i in range(1,len(verseny_adatok)):
         z.append(verseny_adatok[i].split(",")[0])
 print(f"Van pontja:{y}˛ \n\n nincs pontja:{z}")
 
-#versenyzök pontszáma alapján növekvő sorrend
+#10versenyzök pontszáma alapján növekvő sorrend
 for i in range(1,len(verseny_adatok)-1):
     min=i
     minertek=int(verseny_adatok[i].split(",")[1])
@@ -123,3 +125,71 @@ for i in range(1,len(verseny_adatok)-1):
     verseny_adatok[min]=s
 for  i in verseny_adatok:
     print(i)
+#ELJÁRÁS
+
+#4 melyik csoportban volt Pierre Gasly
+def csapat(nev):
+    i=1
+    while i<len(verseny_adatok) and nev not in verseny_adatok[i]:
+        i=i+1
+    if i<len(verseny_adatok):
+        print(f"{nev },{verseny_adatok[i].split(",")[2].strip()} csapatban van")
+    else: 
+        print("Nincs ilyen versenyző ezért egyik csoportban sincs")
+'''
+# FÜGGVÉNY
+def csapat_tagok(csapatnev):  
+
+#8Kiválogatás
+#kik vannak a Mclaren listában
+   db1=0
+   masik_lista=[]
+   for i in range(2,len(verseny_adatok)):
+       if verseny_adatok[i].split(",")[2].strip()==csapatnev:
+           db1=db1+1
+           masik_lista.append(verseny_adatok[i].split(",")[0])
+           
+    return masik_lista    
+'''
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+#PROGRAM
+adat_beolvasas(inputfalj)       
+#F1 eljárás hivás
+pontalanok()
+#F2 függvény hivás
+van_e=versenyzo_kereso("Fernando")
+if van_e:
+    print("Van Fernando")
+else:
+    print("Nincs fernando")
+#4F eljárás hivás
+csapat("Pierre Gasly")
+#F8 fügény hivás
+csapat_nev = "Mclaren"
+tag_lista=csapat_tagok(csapat_nev)
+print(f"Ezek a személyek vannak a {csapat_nev} istálloban: ")
+i = 1
+for nev in tag_lista:
+    print(f"{i}.{nev:>30}")
+    i+= 1   
+print("ITT a program vége")
+
+#F2B
+pontok()
+#F3
+ember_nev()
+#F5
+atlag_szam()
+#F6 fügvény
