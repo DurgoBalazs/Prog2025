@@ -48,7 +48,7 @@ def fajl_beolvasas(fajl):
         with open(fajl, encoding="utf-8") as falj:
             #a feladathoz kell globális változok
             global ossz_pontszam
-            global adatok
+            
             #az össz pontszám beolvasása
             #Beolvassuk a sort(falj.readline())
             #Eltávolitjuk a sor végéröl az entert(Strip())
@@ -57,7 +57,11 @@ def fajl_beolvasas(fajl):
             falj.readline()
             for sor in falj:
                 sornyi_adat = sor.strip().split(";")
-                adatok.append(sornyi_adat)        
+                sornyi_adat[1] = int(sornyi_adat[1])
+                sornyi_adat[2] = int(sornyi_adat[2])
+                sornyi_adat[3] = int(sornyi_adat[3])
+                tanulo_adatok.append(sornyi_adat) 
+                       
             
             
     except IOError as hiba:
@@ -69,8 +73,10 @@ def fajl_beolvasas(fajl):
     Határozza meg hány tanulóból áll a csoport!
     A metódus neve: csoport_letszam
 """
-
-
+def csoport_letszam():
+    return len(tanulo_adatok)
+print(tanulo_adatok)
+print(f"A csoport létszáma {csoport_letszam()}")
 
 
 
@@ -80,6 +86,12 @@ def fajl_beolvasas(fajl):
     Határozza meg melyik tanuló gyűjtötte a legtöbb pontszámot!
     A metódus neve: legszorgalmasabb
 """
+def csoport_letszam():
+    maxi=0
+    for i in range(1, len(tanulo_adatok)):
+        if tanulo_adatok[i][3] > tanulo_adatok[maxi][3]:
+            maxi=i
+    return tanulo_adatok[maxi][0]
 
 
 
@@ -92,7 +104,11 @@ def fajl_beolvasas(fajl):
     Kiírásnál jelenítse meg a tanulók nevét és az új pontszámokat.
     A metódus neve: miki_ajandek
 """
-
+def miki_ajandek():
+    for i in range(len(tanulo_adatok)):
+        tanulo_adatok[i][3] = round(tanulo_adatok[i][3] *1.05)
+        
+        
 
 
 
@@ -106,19 +122,24 @@ print(f"\n{'*' * 40}\n{cim.upper():^40}\n{'*' * 40}\n\n")
 
 
 # fajl_beolvasas
-inputfile="12B_dhcp_ponttabla.txt"
+inputfile="Prog2025/12B_dhcp_ponttabla.txt"
 ossz_pontszam =0
 adatok=[]
 fajl_beolvasas(inputfile)
-print(adatok)
+print(tanulo_adatok)
 for sor in adatok:
     print(sor)
+
 # csoport_letszam
-
+print(csoport_letszam)
 # legszorgalmasabb
-
+print(f"A legtöbb pontott szerzett emberke{csoport_letszam()}")
 # miki_ajandek
+print("Az új pomtszámok")
+miki_ajandek()
 
+for i in range(len(tanulo_adatok)):
+    print(f"{tanulo_adatok[i][0]:20}\t{tanulo_adatok[i][3]}")
 
 
 print("\nProgram vége. BYE!\n")
