@@ -53,7 +53,10 @@ astronauts = [
 '''
 
 def kuldetes_atlag():
-    pass
+    osszeg = 0
+    for i in range(len(astronauts)):
+        osszeg += astronauts[i][2]
+    print(f"1.feladat:\n\tAz űrhajósok átlagosan {(osszeg / len(astronauts)):.0f} küldetést teljesítettek eddig.")
 
 
 # 2. feladat: Ha a célállomásáról senki sem indulna tovább addíg,
