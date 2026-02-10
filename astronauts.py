@@ -76,7 +76,18 @@ def kuldetes_atlag():
 '''
 
 def iss_talalkozo():
-    pass
+    szerepek = []
+    for i in range(len(astronauts)):
+        if astronauts[i][4]=="ISS" and  astronauts[i][1] not in szerepek:
+            szerepek.append(astronauts[i][1])
+    print(f"2.feladat:")
+    for szerep in szerepek:
+        print(f"\t{szerep}:")
+        for i in range(len(astronauts)):
+            if astronauts[i][1] == szerep and astronauts[i][4] == "ISS":
+                print(f"\t\t{astronauts[i][0]}")
+       
+
 
 
 # 3. feladat: Az összes repült távolság hány százaléka kötődik a pilótákhoz?
@@ -88,7 +99,12 @@ def iss_talalkozo():
 '''
 
 def pilota_tav():
-    pass
+    osszes=0
+    for i in range(len(astronauts[i])):
+        osszes+=astronauts[i][3]
+        if astronauts[i][1]=="Pilóta":
+            print(f"smash")
+            
 
 
 # 4. feladat: Az űrhajósok a küldetések száma alapján rangokat kapnak (csillagokat).
