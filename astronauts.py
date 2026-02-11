@@ -99,12 +99,19 @@ def iss_talalkozo():
 '''
 
 def pilota_tav():
-    osszes=0
-    for i in range(len(astronauts[i])):
-        osszes+=astronauts[i][3]
-        if astronauts[i][1]=="Pilóta":
-            print(f"smash")
+    osszes = 0
+    pilota = 0
+    
+    for i in range(len(astronauts)):
+        osszes += astronauts[i][3]
+        
+        if astronauts[i][1] == "Pilóta":
+            pilota += astronauts[i][3]
             
+    print(f"3.feladat: A piloták általá megtett távolság")
+    print(f"   { "Össz. táv:":16} {pilota} millió km")
+    print(f"    {"Arány:":16}  {(pilota / osszes):.2%}")
+
 
 
 # 4. feladat: Az űrhajósok a küldetések száma alapján rangokat kapnak (csillagokat).
@@ -127,9 +134,25 @@ def pilota_tav():
 '''
 
 def hold_rang():
-    pass
-
-
+    hold = []
+    
+    for i in range(len(astronauts)):
+        if astronauts[i][4] == "Hold":
+            hold.append(astronauts[i])
+            
+    for i in range(len(hold)):
+        if hold[i][2] <= 10:
+            hold[i].append(1)
+        elif hold[i][2] <= 20:
+            hold[i].append(2)
+        elif hold[i][2] <= 30:
+            hold[i].append(3)
+                      
+    print(f"4.feladat: A Holdra utazók rangjai\n")
+    print(f"    {"Becenév":^16}{"Rang":^8}\n    {'-' * 24}")
+    
+    for i in range(len(hold)):
+        print(f"{hold[i][0]:16}{'*' * hold[i][5]:^8}") 
 # -------------------------------------
 # PROGRAM
 # -------------------------------------
