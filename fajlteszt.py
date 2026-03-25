@@ -98,7 +98,7 @@ masik_lista=[]
 for i in range(2,len(verseny_adatok)):
 print("Ezel a személyek vannak a Mclaren istálloba",masik_lista)
 """
-#9.kinek van kinek nncs potja
+#9.kinek van kinek nincs potja
 dby=0
 dbz=0
 y=[]

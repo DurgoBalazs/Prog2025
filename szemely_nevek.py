@@ -22,14 +22,12 @@ def nevek_betoltese(fajlnev):
     """
     # TODO: Implementáld a fájlbeolvasást
     try:
-        with open(fajlnev,"r",encoding="utf-8") as nevek:
+        with open(fajlnev, encoding="utf-8") as falj:
             
-            lista = []
+            nevek = falj.readlines()
             
-            for sor in nevek:
-                lista.append(sor.strip())
             
-            return lista
+            return nevek
         
         
     except IOError as nev:
@@ -53,16 +51,25 @@ def keresztenevek_gyujtese(nevek):
         list: A keresztnevek listája
     """
     # TODO: Implementáld a függvényt
-    pass
+    keresztnev = []
+    
+    
+    for nev in nevek:
+        kn = nev.split(' ')[0]
+        
+        if kn not in keresztnev:
+            keresztnev.append(kn)
+    
+    return keresztnev        
 
 
 # ============================================================================
-# 3. FÜGGVÉNY: CSALÁDNEVEK GYAKORISÁGA
+# 3. FÜGGVÉNY: leggyakoribb családnév
 # ============================================================================
 
 def csaladnevek_gyakorisaga(nevek):
     """
-    Feladat: Számold meg, melyik családnév hányszor szerepel!
+    Feladat: Számold meg, melyik a leggyakoribb családnév!
     
     Használj két listát: egyiket a családneveknek, másikat a darabszámoknak!
     
@@ -78,8 +85,35 @@ def csaladnevek_gyakorisaga(nevek):
         tuple: (csaladnevek_listaja, darabszamok_listaja)
     """
     # TODO: Implementáld a függvényt
-    pass
+    csaladnev = []
+    
+    
+    
+    for nev in nevek:
+        vn = nev.split()[-1]
+        
+        i = 0
+        while i < len(csaladnev) and csaladnev[i][0] != vn:
+            i += 1
+        
+        if i <len(csaladnev):
+            csaladnev[i][1] += 1
+        else:
+            csaladnev.append([vn,1])
+    
+    """for csn in csaladnev:
+        print(f"{csn[0]}: {csn[1]}")"""
 
+    maxi = 0
+    max_ertek = csaladnev[0][1]
+    
+    
+    for i in range(1, len(csaladnev)):
+        if max_ertek <  csaladnev[i][1]:
+            maxi = i
+            max_ertek = csaladnev[i][1]
+            
+    return  csaladnev[maxi][0]
 
 # ============================================================================
 # 6. FÜGGVÉNY: NEVEK MEGFORDÍTÁSA
@@ -100,8 +134,23 @@ def nevek_megforditasa(nevek):
         list: A megfordított nevek listája
     """
     # TODO: Implementáld a függvényt
-    pass
-
+    uj_nevek=[]
+    for nev in nevek:
+        nev_reszek = nev.split(' ')
+        #Verzió 1:
+        
+        
+        # seged = nev_reszek[0]
+        # nev_reszek[0] = nev_reszek[-1]
+        # nev_reszek[-1] = seged
+        
+        
+        #Verzió 2:
+        nev_reszek[0], nev_reszek[1] = nev_reszek[-1], nev_reszek[0]
+        uj_nevek.append(" ".join(nev_reszek))
+    
+    
+    return uj_nevek
 
 
 # ============================================================================
@@ -120,8 +169,8 @@ def main():
     # 1. Nevek betöltése
     # =====================================================
     # TODO: Hívd meg a nevek_betoltese() függvényt a "nevek.txt" fájllal
-    nevek_listaja = nevek_betoltese("szemely_nevek.txt")
-    
+    nev_lista = nevek_betoltese("Prog2025/szemely_nevek.txt")
+    # print(nev_lista)
     
     
     
@@ -133,21 +182,25 @@ def main():
     # =====================================================
     # TODO: Hívd meg a keresztenevek_gyujtese() függvényt
     # és írasd ki az eredményt
-    
+    keresztenevek_listaja =keresztenevek_gyujtese(nev_lista)
+    #print(keresztenevek_listaja)
     
     # =====================================================
     # 3. Családnevek gyakorisága
     # =====================================================
     # TODO: Hívd meg a csaladnevek_gyakorisaga() függvényt
     # és írasd ki az eredményt    
-  
+    print(f"A leggyakoribb családnév:{csaladnevek_gyakorisaga(nev_lista)}")
+    
     
     # =====================================================
     # 6. Nevek megfordítása
     # =====================================================
     # TODO: Hívd meg a nevek_megforditasa() függvényt
     # és írasd ki az eredményt
-    
+    lista = nevek_megforditasa(nev_lista)
+    for le  in lista:
+        print(le)
     
 
     
